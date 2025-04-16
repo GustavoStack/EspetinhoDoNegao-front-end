@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom colors for the churrascaria
+				churrasco: {
+					red: '#8B0000',
+					brown: '#5D4037',
+					lightBrown: '#8D6E63',
+					charcoal: '#333333',
+					beige: '#F5F5DC',
 				}
+			},
+			fontFamily: {
+				'pacifico': ['Pacifico', 'cursive'],
+				'roboto': ['Roboto', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -70,25 +83,26 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
+				'flame': {
+					'0%, 100%': { transform: 'translateY(0) scale(1)' },
+					'50%': { transform: 'translateY(-10px) scale(1.1)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'flame': 'flame 2s ease-in-out infinite',
+			},
+			backgroundImage: {
+				'wood-texture': "url('https://images.unsplash.com/photo-1601296200639-89593037b607?q=80&w=1000&auto=format&fit=crop')",
+				'grill-pattern': "url('https://images.unsplash.com/photo-1529589381442-c47625e87178?q=80&w=1000&auto=format&fit=crop')",
 			}
 		}
 	},
