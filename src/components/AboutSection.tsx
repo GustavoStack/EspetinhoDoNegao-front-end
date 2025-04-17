@@ -20,13 +20,13 @@ const AboutSection = () => {
           {/* Right side - Text */}
           <div>
             <p className="text-lg text-churrasco-charcoal mb-6">
-              Desde 2010, o <span className="font-bold text-churrasco-red">Espetinho Grill</span> tem sido referência em culinária de churrasco, especializando-se na arte dos espetinhos perfeitamente temperados e grelhados.
+              Fundado em 2023, o <span className="font-bold text-churrasco-red">Espetinho Grill</span> surgiu da paixão de uma família pelo autêntico churrasco brasileiro, com foco especial na arte dos espetinhos perfeitamente preparados.
             </p>
             <p className="text-lg text-churrasco-charcoal mb-6">
-              Nossa paixão pelo autêntico churrasco brasileiro nos levou a criar uma experiência única, onde tradição e inovação se encontram para proporcionar sabores inesquecíveis.
+              Embora sejamos novos no mercado, trazemos uma tradição familiar de décadas no preparo de carnes nobres, oferecendo uma experiência única onde qualidade e sabor são nossas prioridades absolutas.
             </p>
             <p className="text-lg text-churrasco-charcoal mb-8">
-              Cada espetinho é preparado com ingredientes selecionados e grelhado no ponto exato, seguindo receitas tradicionais e técnicas aperfeiçoadas ao longo de anos.
+              Cada espetinho é cuidadosamente preparado com ingredientes selecionados e grelhado no ponto exato, seguindo técnicas tradicionais que garantem o sabor autêntico do verdadeiro churrasco.
             </p>
             
             {/* Features */}
@@ -50,8 +50,8 @@ const AboutSection = () => {
               <div className="flex items-start space-x-3">
                 <Clock className="text-churrasco-red flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-churrasco-brown">Preparo Tradicional</h3>
-                  <p className="text-sm text-churrasco-charcoal">Receitas artesanais</p>
+                  <h3 className="font-bold text-churrasco-brown">Preparo Artesanal</h3>
+                  <p className="text-sm text-churrasco-charcoal">Receitas tradicionais</p>
                 </div>
               </div>
               

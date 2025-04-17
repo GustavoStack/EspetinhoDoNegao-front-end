@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { TabsList, TabsTrigger, TabsContent, Tabs } from "@/components/ui/tabs";
+import { Utensils, Beer, GlassWater, ShoppingBag } from "lucide-react";
 
 type MenuItemType = {
   id: number;
@@ -12,10 +12,10 @@ type MenuItemType = {
 };
 
 const MenuSection = () => {
-  const [activeCategory, setActiveCategory] = useState("carnes");
+  const [activeCategory, setActiveCategory] = useState("espetinhos");
   
   const menuItems: Record<string, MenuItemType[]> = {
-    carnes: [
+    espetinhos: [
       {
         id: 1,
         name: "Picanha Premium",
@@ -44,9 +44,7 @@ const MenuSection = () => {
         description: "Lentamente assada para máxima suculência.",
         price: "R$ 14,90",
         imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
-      }
-    ],
-    aves: [
+      },
       {
         id: 5,
         name: "Frango com Bacon",
@@ -61,48 +59,123 @@ const MenuSection = () => {
         description: "Tradicional e saboroso, na medida certa de sal.",
         price: "R$ 9,90",
         imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
-      }
-    ],
-    especiais: [
-      {
-        id: 7,
-        name: "Espeto Misto",
-        description: "Combinação de carnes nobres em um único espeto.",
-        price: "R$ 18,90",
-        imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
       },
       {
-        id: 8,
+        id: 7,
         name: "Linguiça Artesanal",
         description: "Receita da casa, levemente apimentada.",
         price: "R$ 11,90",
         popular: true,
         imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 8,
+        name: "Kafta",
+        description: "Carne moída temperada com especiarias orientais.",
+        price: "R$ 12,90",
+        imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
+      }
+    ],
+    bebidas_nao_alcoolicas: [
+      {
+        id: 9,
+        name: "Água Mineral",
+        description: "Com ou sem gás - 500ml.",
+        price: "R$ 5,00",
+        imageUrl: "https://images.unsplash.com/photo-1578653520367-4a8b6247be2f?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 10,
+        name: "Refrigerante",
+        description: "Coca-Cola, Guaraná, Sprite - Lata 350ml.",
+        price: "R$ 6,00",
+        popular: true,
+        imageUrl: "https://images.unsplash.com/photo-1578653520367-4a8b6247be2f?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 11,
+        name: "Suco Natural",
+        description: "Laranja, Abacaxi ou Limão - Copo 300ml.",
+        price: "R$ 8,00",
+        imageUrl: "https://images.unsplash.com/photo-1578653520367-4a8b6247be2f?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 12,
+        name: "Água de Coco",
+        description: "Natural e gelada - Copo 300ml.",
+        price: "R$ 7,00",
+        imageUrl: "https://images.unsplash.com/photo-1578653520367-4a8b6247be2f?q=80&w=1000&auto=format&fit=crop"
+      }
+    ],
+    cervejas: [
+      {
+        id: 13,
+        name: "Cerveja Pilsen",
+        description: "Brahma, Skol, Antarctica - Long Neck 355ml.",
+        price: "R$ 8,90",
+        popular: true,
+        imageUrl: "https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 14,
+        name: "Cerveja Puro Malte",
+        description: "Brahma Duplo Malte, Heineken - Long Neck 355ml.",
+        price: "R$ 10,90",
+        imageUrl: "https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 15,
+        name: "Cerveja Artesanal",
+        description: "IPA, APA, Stout - Garrafa 500ml.",
+        price: "R$ 18,90",
+        imageUrl: "https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 16,
+        name: "Chopp",
+        description: "Claro ou escuro - Copo 350ml.",
+        price: "R$ 12,00",
+        popular: true,
+        imageUrl: "https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=1000&auto=format&fit=crop"
       }
     ],
     acompanhamentos: [
       {
-        id: 9,
+        id: 17,
         name: "Pão de Alho",
         description: "Crocante por fora, macio por dentro.",
         price: "R$ 7,90",
         imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
       },
       {
-        id: 10,
+        id: 18,
         name: "Legumes Grelhados",
         description: "Mix de legumes frescos grelhados na brasa.",
         price: "R$ 8,90",
+        imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 19,
+        name: "Farofa da Casa",
+        description: "Com bacon e temperos especiais.",
+        price: "R$ 6,90",
+        imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
+      },
+      {
+        id: 20,
+        name: "Vinagrete",
+        description: "Tomate, cebola e pimentão frescos.",
+        price: "R$ 5,90",
         imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop"
       }
     ]
   };
 
   const categories = [
-    { id: "carnes", label: "Carnes" },
-    { id: "aves", label: "Aves" },
-    { id: "especiais", label: "Especiais" },
-    { id: "acompanhamentos", label: "Acompanhamentos" }
+    { id: "espetinhos", label: "Espetinhos", icon: <Utensils size={18} /> },
+    { id: "bebidas_nao_alcoolicas", label: "Bebidas", icon: <GlassWater size={18} /> },
+    { id: "cervejas", label: "Cervejas", icon: <Beer size={18} /> },
+    { id: "acompanhamentos", label: "Acompanhamentos", icon: <Utensils size={18} /> }
   ];
 
   return (
@@ -113,14 +186,15 @@ const MenuSection = () => {
           Descubra nossa seleção de espetinhos preparados com carnes selecionadas e temperos especiais.
         </p>
         
-        <Tabs defaultValue="carnes" className="w-full max-w-4xl mx-auto">
+        <Tabs defaultValue="espetinhos" className="w-full max-w-4xl mx-auto">
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 mb-8">
             {categories.map(category => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
-                className="data-[state=active]:bg-churrasco-red data-[state=active]:text-white"
+                className="data-[state=active]:bg-churrasco-red data-[state=active]:text-white flex items-center gap-2"
               >
+                {category.icon}
                 {category.label}
               </TabsTrigger>
             ))}
@@ -158,7 +232,10 @@ const MenuSection = () => {
         </Tabs>
         
         <div className="text-center mt-12">
-          <a href="#contato" className="btn-primary inline-block">Faça sua Reserva</a>
+          <a href="#contato" className="btn-primary inline-flex items-center gap-2">
+            <ShoppingBag size={18} />
+            Fazer Pedido
+          </a>
         </div>
       </div>
     </section>

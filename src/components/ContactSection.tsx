@@ -1,5 +1,5 @@
 
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, Phone, Mail, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,9 +12,8 @@ const ContactSection = () => {
     name: "",
     email: "",
     phone: "",
-    guests: "",
-    date: "",
-    message: ""
+    address: "",
+    orderNotes: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -24,10 +23,10 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Pedido enviado:", formData);
     toast({
-      title: "Reserva Recebida!",
-      description: "Entraremos em contato para confirmar sua reserva.",
+      title: "Pedido Enviado!",
+      description: "Recebemos seu pedido e entraremos em contato para confirmar.",
     });
     
     // Reset form
@@ -35,16 +34,15 @@ const ContactSection = () => {
       name: "",
       email: "",
       phone: "",
-      guests: "",
-      date: "",
-      message: ""
+      address: "",
+      orderNotes: ""
     });
   };
 
   return (
     <section id="contato" className="section-padding bg-churrasco-charcoal text-white">
       <div className="container mx-auto">
-        <h2 className="section-title text-white mb-12">Faça sua Reserva</h2>
+        <h2 className="section-title text-white mb-12">Faça seu Pedido</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Column - Contact Info */}
@@ -90,19 +88,19 @@ const ContactSection = () => {
             </div>
             
             <div className="mt-8 py-6 px-4 rounded-lg bg-churrasco-brown/20">
-              <h3 className="text-xl font-semibold mb-4">Venha nos Visitar</h3>
+              <h3 className="text-xl font-semibold mb-4">Delivery e Retirada</h3>
               <p className="text-gray-300 mb-2">
-                Estamos localizados em uma região central, de fácil acesso, com estacionamento no local.
+                Atendemos em toda a região central com delivery rápido.
               </p>
               <p className="text-gray-300">
-                Para grandes grupos, recomendamos reserva antecipada.
+                Para pedidos com retirada, teremos seu espetinho fresco e quentinho esperando por você!
               </p>
             </div>
           </div>
           
-          {/* Right Column - Reservation Form */}
+          {/* Right Column - Order Form */}
           <div className="bg-white text-churrasco-charcoal p-6 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-semibold mb-6 text-churrasco-red font-pacifico">Formulário de Reserva</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-churrasco-red font-pacifico">Formulário de Pedido</h3>
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -144,49 +142,36 @@ const ContactSection = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="guests" className="block text-sm font-medium mb-1">Número de Pessoas</label>
+                  <label htmlFor="address" className="block text-sm font-medium mb-1">Endereço de Entrega</label>
                   <Input 
-                    id="guests" 
-                    name="guests" 
-                    type="number" 
-                    min="1" 
-                    placeholder="2" 
+                    id="address" 
+                    name="address" 
+                    placeholder="Rua, número, bairro" 
                     required
-                    value={formData.guests}
+                    value={formData.address}
                     onChange={handleChange}
                   />
                 </div>
               </div>
               
               <div>
-                <label htmlFor="date" className="block text-sm font-medium mb-1">Data e Hora</label>
-                <Input 
-                  id="date" 
-                  name="date" 
-                  type="datetime-local" 
-                  required
-                  value={formData.date}
-                  onChange={handleChange}
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">Mensagem (opcional)</label>
+                <label htmlFor="orderNotes" className="block text-sm font-medium mb-1">Observações do Pedido</label>
                 <Textarea 
-                  id="message" 
-                  name="message" 
-                  placeholder="Se tiver alguma preferência ou solicitação especial, informe aqui." 
+                  id="orderNotes" 
+                  name="orderNotes" 
+                  placeholder="Alguma instrução especial para o seu pedido?" 
                   rows={3}
-                  value={formData.message}
+                  value={formData.orderNotes}
                   onChange={handleChange}
                 />
               </div>
               
               <Button 
                 type="submit" 
-                className="w-full bg-churrasco-red hover:bg-red-800 text-white font-medium py-2"
+                className="w-full bg-churrasco-red hover:bg-red-800 text-white font-medium py-2 flex items-center justify-center gap-2"
               >
-                Enviar Reserva
+                <ShoppingBag size={18} />
+                Finalizar Pedido
               </Button>
             </form>
           </div>

@@ -1,5 +1,5 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShoppingBag } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -34,9 +34,11 @@ const Hero = () => {
               href="#contato" 
               className="py-3 px-8 rounded-full font-medium transition-all 
                        bg-transparent border-2 border-white text-white 
-                       hover:bg-white hover:text-churrasco-red transform hover:-translate-y-1"
+                       hover:bg-white hover:text-churrasco-red transform hover:-translate-y-1
+                       flex items-center justify-center gap-2"
             >
-              Fazer Reserva
+              <ShoppingBag size={18} />
+              Fazer Pedido
             </a>
           </div>
         </div>
