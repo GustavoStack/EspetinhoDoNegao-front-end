@@ -45,14 +45,14 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       name: "Rafael Silva",
-      comment: "Os espetinhos de picanha são simplesmente incríveis! Suculentos e perfeitamente temperados. Já virei cliente fiel.",
+      comment: "Os espetinhos de boi são simplesmente incríveis! Suculentos e perfeitamente temperados. Já virei cliente fiel.",
       rating: 5,
       date: "20/03/2023",
       imageUrl: "https://i.pravatar.cc/150?img=11"
     },
     {
       name: "Ana Oliveira",
-      comment: "Ambiente aconchegante e atendimento excelente. A linguiça artesanal é um destaque! Recomendo demais.",
+      comment: "Ambiente aconchegante e atendimento excelente. O caldo de mcaxeira é um destaque! Recomendo demais.",
       rating: 4,
       date: "15/02/2023",
       imageUrl: "https://i.pravatar.cc/150?img=5"
