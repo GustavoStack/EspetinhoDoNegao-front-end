@@ -16,8 +16,7 @@ const paymentMethods = [
 ];
 
 export default function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
-  const { cart, removeFromCart, changeItemQty, total, clearCart ,} = useCart();
-  const [payment, setPayment] = useState("cash");
+  const { cart, removeFromCart, changeItemQty, total, clearCart, } = useCart();
   const [finalized, setFinalized] = useState(false);
   const navigate = useNavigate();
 
@@ -80,22 +79,6 @@ export default function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
                 <div>Total</div>
                 <div>
                   R$ {total.toFixed(2)}
-                </div>
-              </div>
-              <div>
-                <div className="mb-1 font-medium">Forma de pagamento:</div>
-                <div className="flex gap-2">
-                  {paymentMethods.map(pm => (
-                    <Button
-                      key={pm.id}
-                      variant={payment === pm.id ? "default" : "outline"}
-                      onClick={() => setPayment(pm.id)}
-                      type="button"
-                    >
-                      {pm.icon}
-                      {pm.label}
-                    </Button>
-                  ))}
                 </div>
               </div>
               <SheetClose asChild>

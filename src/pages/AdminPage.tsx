@@ -54,6 +54,12 @@ export default function AdminPedidosPage() {
                         <div className="text-sm text-gray-700">
                             <p><strong>Endereço:</strong> {pedido.street}, {pedido.number} - {pedido.neighborhood}</p>
                         </div>
+                        <div className='text-sm text-gray-700'>
+                            <p><strong>Metodo de pagamento:</strong> {pedido.methodPayment}</p>
+                            {pedido.methodPayment === "dinheiro" &&(
+                                <p><strong>Troco para:</strong> {pedido.change[0].changeValue}</p>
+                            )}
+                        </div>
 
                         <div>
                             <p className="font-medium">Itens do Pedido:</p>
@@ -62,6 +68,10 @@ export default function AdminPedidosPage() {
                                     <li key={idx}>{item.name} (x{item.quantity})</li>
                                 ))}
                             </ul>
+                        </div>
+                        <div>
+                            <p className="font-semibold">Valor total:</p>
+                            <p className="text-lg font-medium text-gray-800">R$ {pedido.totalPrice}</p>
                         </div>
 
                         <div className="flex items-center gap-2">

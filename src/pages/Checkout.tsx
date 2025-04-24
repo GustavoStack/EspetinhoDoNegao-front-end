@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
+import { CreditCard, DollarSign } from "lucide-react";
 
 interface CartItem {
   id: number;
@@ -15,9 +15,17 @@ interface CartItem {
   quantity: number;
 }
 
+const paymentMethods = [
+  { id: "dinheiro", label: "Dinheiro", icon: <DollarSign size={18} /> },
+  { id: "cartão", label: "Cartão", icon: <CreditCard size={18} /> },
+];
+
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [payment, setPayment] = useState("");
+  const [needChange, setNeedChange] = useState(false);
+  const [changeValue, setChangeValue] = useState(0);
   const { toast } = useToast();
   const items = location.state?.items as CartItem[] || [];
 
@@ -27,12 +35,11 @@ const Checkout = () => {
     number: "",
     neighborhood: "",
     phoneNumber: "",
-    methodPayment: "dinheiro"
   });
 
   const deliveryFee = 3.00;
 
-  const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + deliveryFee;
+  const totalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + deliveryFee;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,18 +47,20 @@ const Checkout = () => {
     try {
       const order = {
         ...formData,
+        methodPayment: payment,
+        change: [{ needChange, changeValue }],
         items: items.map(item => ({
           id: item.id,
           name: item.name,
           price: item.price,
           quantity: item.quantity
         })),
-        total
+        totalPrice
       };
 
       await axios.post("http://localhost:8090/orders", order);
 
-      setFormData({client: "", street: "", number: "", neighborhood: "", phoneNumber: "", methodPayment: "dinheiro"});
+      setFormData({ client: "", street: "", number: "", neighborhood: "", phoneNumber: ""});
 
       console.log("Pedido enviado:", order);
     } catch (error) {
@@ -90,16 +99,18 @@ const Checkout = () => {
             </div>
           ))}
           <div className="flex justify-between">
-            <p>Taxa da emtrega </p><span>R$ {deliveryFee.toFixed(2)}</span>
+            <p>Taxa da entrega </p><span>R$ {deliveryFee.toFixed(2)}</span>
           </div>
           <div className="border-t mt-4 pt-4">
             <div className="flex justify-between font-bold">
               <span>Total</span>
-              <span>R$ {total.toFixed(2)}</span>
+              <span>R$ {totalPrice.toFixed(2)}</span>
             </div>
           </div>
         </div>
-
+        <h1 className="text-3xl font-bold text-churrasco-red mb-8">
+          Informações para entrega
+        </h1>
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6">
           <div className="space-y-4">
             <div>
@@ -159,25 +170,42 @@ const Checkout = () => {
             </div>
 
             <div>
-              <Label>Forma de Pagamento</Label>
-              <RadioGroup
-                value={formData.methodPayment}
-                onValueChange={(value) => setFormData({ ...formData, methodPayment: value })}
-                className="mt-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="dinheiro" id="dinheiro" />
-                  <Label htmlFor="dinheiro">Dinheiro</Label>
+              <div className="mb-1 font-medium">Forma de pagamento:</div>
+              <div className="flex gap-2">
+                {paymentMethods.map(pm => (
+                  <Button
+                    key={pm.id}
+                    variant={payment === pm.id ? "default" : "outline"}
+                    onClick={() => setPayment(pm.id)}
+                    type="button"
+                  >
+                    {pm.icon}
+                    {pm.label}
+                  </Button>
+                ))}
+              </div>
+              {payment === "dinheiro" && (
+                <div className="space-y-2 mt-2">
+                  <label className="flex items-center gap-2 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={needChange}
+                      onChange={() => setNeedChange(!needChange)}
+                      className="accent-red-500"
+                    />
+                    Precisa de troco?
+                  </label>
+                  {needChange && (
+                    <input
+                      type="number"
+                      placeholder="Para quanto? (ex: 100)"
+                      className="w-full border rounded px-3 py-2 text-sm"
+                      value={changeValue}
+                      onChange={(e) => setChangeValue(Number(e.target.value))}
+                    />
+                  )}
                 </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="pix" id="pix" />
-                  <Label htmlFor="pix">PIX</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="cartao" id="cartao" />
-                  <Label htmlFor="cartao">Cartão</Label>
-                </div>
-              </RadioGroup>
+              )}
             </div>
           </div>
 
